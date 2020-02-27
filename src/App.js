@@ -1,24 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState} from 'react';
 import './App.css';
+import {Form, FormControl, FormGroup, FormLabel} from "react-bootstrap";
+
+const markdown = require( "markdown" ).markdown;
+
 
 function App() {
+  const [markdownText, setMarkdownText] = useState('');
+  const preview = markdown.toHTML(markdownText);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="App container">
+      <Form>
+        <FormGroup>
+          <FormLabel>Markdown Input</FormLabel>
+          <FormControl as='textarea' value={markdownText} onChange={(e) => setMarkdownText(e.target.value)}/>
+        </FormGroup>
+      </Form>
+        <div dangerouslySetInnerHTML={{ __html: preview }} />
     </div>
   );
 }
