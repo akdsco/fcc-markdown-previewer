@@ -1,19 +1,49 @@
+/* General Styling */
+
 body {
   margin: 0;
   padding: 0;
+  background-color: #206b5a;
+}
+
+code {
+  color: white;
+  display: block;
+  white-space: pre-wrap;
+  width: fit-content;
+  background-color: #353639;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+table, th, td {
+  border: 2px solid black;
+  padding: 1px 4px;
 }
 
 .container {
   width: 95%;
+  max-width: 1500px;
   margin: 0 auto;
+}
+
+/* Components */
+
+.maximised {
+  width: 100%!important;
+  min-height: 80vh!important;
+}
+
+.hidden {
+  display: none;
 }
 
 .flex {
   display: flex;
-}
-
-.App {
-
 }
 
 .window.input {
@@ -49,15 +79,22 @@ body {
 .window__input-textarea {
   width: calc(100% - 26px);
   padding: 12px;
-  height: 350px;
+  min-height: 350px;
   background-color: rgb(232, 232, 232);
   outline: 0;
   resize: vertical;
 }
 
 .window__resize-btn {
+  all: unset;
   margin-right: 3px;
   margin-top: 2px;
+}
+
+.window__resize-btn:hover,
+.window__resize-btn:focus {
+  color: #15ff9f;
+  cursor: pointer;
 }
 
 .window.output {
@@ -66,6 +103,39 @@ body {
 
 .window__output-textarea {
   border: 1px solid grey;
-  min-height: 400px;
+  min-height: 408px;
   padding: 0 12px;
+  background-color: #ececec;
+}
+
+.textarea--expanded {
+  min-height: 80vh;
+}
+
+@media (min-width: 1000px) {
+  .App {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .input {
+    width: 37.5%;
+  }
+
+  .output {
+    width: 60.5%;
+  }
+
+  .window.input,
+  .window.output {
+    margin: 25px 0;
+  }
+
+  .window__input-textarea {
+    min-height: calc(92vh - 24px);
+  }
+
+  .window__output-textarea {
+    min-height: 80vh;
+  }
 }
