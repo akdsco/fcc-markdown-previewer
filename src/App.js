@@ -8,8 +8,8 @@ import Output from "./components/Output";
 
 function App() {
   const [markdownText, setMarkdownText] = useState('');
-  const [isMarkdownFull, setIsMarkdownFull] = useState(false);
-  const [isOutputFull, setIsOutputFull] = useState(false);
+  const [inputMax, setInputMax] = useState(false);
+  const [outputMax, setOutputMax] = useState(false);
 
   useEffect(() => {
     setMarkdownText(markdownExample);
@@ -18,22 +18,16 @@ function App() {
   function resize(e) {
     const type = e.currentTarget.value;
 
-    if(type === 'markdown') {
-      if(isMarkdownFull) {
-        setIsMarkdownFull(false);
-        setIsOutputFull(false);
-      } else if(!isMarkdownFull) {
-        setIsMarkdownFull(true);
-        setIsOutputFull(false)
-      }
+    if((type === 'input' && inputMax) ||
+      (type === 'output' && outputMax)) {
+      setInputMax(false);
+      setOutputMax(false);
+    } else if (type === 'input') {
+      setInputMax(true);
+      setOutputMax(false);
     } else if (type === 'output') {
-      if(isOutputFull) {
-        setIsOutputFull(false);
-        setIsMarkdownFull(false);
-      } else if (!isOutputFull) {
-        setIsOutputFull(true);
-        setIsMarkdownFull(false);
-      }
+      setInputMax(false);
+      setOutputMax(true);
     }
   }
 
@@ -42,14 +36,14 @@ function App() {
       <Input
         markdownText={markdownText}
         setMarkdownText={setMarkdownText}
-        isMarkdownFull={isMarkdownFull}
-        isOutputFull={isOutputFull}
+        inputMax={inputMax}
+        outputMax={outputMax}
         resize={resize}
       />
       <Output
         markdownText={markdownText}
-        isMarkdownFull={isMarkdownFull}
-        isOutputFull={isOutputFull}
+        inputMax={inputMax}
+        outputMax={outputMax}
         resize={resize}
       />
     </div>

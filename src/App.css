@@ -46,6 +46,8 @@ table, th, td {
   display: flex;
 }
 
+/* Window Label */
+
 .window.input {
   margin-top: 30px;
 }
@@ -72,6 +74,20 @@ table, th, td {
   margin-left: 4px;
 }
 
+.window__resize-btn {
+  all: unset;
+  margin-right: 3px;
+  margin-top: 2px;
+}
+
+.window__resize-btn:hover,
+.window__resize-btn:focus {
+  color: #15ff9f;
+  cursor: pointer;
+}
+
+/* Window Content */
+
 .window__input-form {
   width: 100%;
 }
@@ -83,18 +99,6 @@ table, th, td {
   background-color: rgb(232, 232, 232);
   outline: 0;
   resize: vertical;
-}
-
-.window__resize-btn {
-  all: unset;
-  margin-right: 3px;
-  margin-top: 2px;
-}
-
-.window__resize-btn:hover,
-.window__resize-btn:focus {
-  color: #15ff9f;
-  cursor: pointer;
 }
 
 .window.output {
@@ -111,6 +115,8 @@ table, th, td {
 .textarea--expanded {
   min-height: 80vh;
 }
+
+/* Bigger than 1000px wide screens */
 
 @media (min-width: 1000px) {
   .App {

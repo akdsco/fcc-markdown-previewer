@@ -3,9 +3,9 @@ import {FaMarkdown, FaArrowsAlt} from "react-icons/fa";
 const classNames = require('classnames');
 
 function Input(props) {
-  const { markdownText, setMarkdownText, isMarkdownFull, isOutputFull, resize } = props;
+  const { markdownText, setMarkdownText, inputMax, outputMax, resize } = props;
   return(
-    <div className={classNames('window', 'input', {maximised: isMarkdownFull && !isOutputFull}, {hidden: isOutputFull && !isMarkdownFull})}>
+    <div className={classNames('window', 'input', {maximised: inputMax}, {hidden: outputMax})}>
       <div className='window__label-area'>
         <div className='flex'>
           <FaMarkdown className='window__logo-icon' />
@@ -13,7 +13,7 @@ function Input(props) {
         </div>
         <button
           className='window__resize-btn'
-          value='markdown'
+          value='input'
           onClick={resize}
         >
           <FaArrowsAlt />
@@ -22,7 +22,7 @@ function Input(props) {
       <form className='window__input-form'>
           <textarea
             id='editor'
-            className={classNames('window__input-textarea', {'textarea--expanded': isMarkdownFull})}
+            className={classNames('window__input-textarea', {'textarea--expanded': inputMax})}
             value={markdownText}
             onChange={e => setMarkdownText(e.target.value)} />
       </form>

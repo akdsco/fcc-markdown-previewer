@@ -1,20 +1,14 @@
 import React from "react";
 import {FaRegEye, FaArrowsAlt} from "react-icons/fa";
-import hljs from 'highlight.js';
-import 'highlight.js/styles/github.css';
 
 const classNames = require('classnames');
 const markdown = require( "marked" );
 
 markdown.setOptions({
   renderer: new markdown.Renderer(),
-  highlight: function(code, language) {
-    const validLanguage = hljs.getLanguage(language) ? language : 'plaintext';
-    return hljs.highlight(validLanguage, code, true).value;
-  },
   pedantic: false,
   gfm: true,
-  breaks: false,
+  breaks: true,
   sanitize: false,
   smartLists: true,
   smartypants: false,
@@ -22,11 +16,11 @@ markdown.setOptions({
 });
 
 function Output(props) {
-  const { markdownText, isMarkdownFull, isOutputFull, resize } = props;
+  const { markdownText, inputMax, outputMax, resize } = props;
   const preview = markdown(markdownText);
 
   return(
-    <div className={classNames('window', 'output', {maximised: isOutputFull && !isMarkdownFull}, {hidden: !isOutputFull && isMarkdownFull})}>
+    <div className={classNames('window', 'output', {maximised: outputMax}, {hidden: inputMax})}>
       <div className='window__label-area'>
         <div className='flex'>
           <FaRegEye className='window__logo-icon' />
@@ -42,7 +36,7 @@ function Output(props) {
       </div>
       <div
         id='preview'
-        className={classNames('window__output-textarea', {'textarea--expanded': isOutputFull})}
+        className={classNames('window__output-textarea', {'textarea--expanded': outputMax})}
         dangerouslySetInnerHTML={{ __html: preview }}
       />
     </div>
