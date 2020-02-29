@@ -4,6 +4,7 @@ const classNames = require('classnames');
 
 function Input(props) {
   const { markdownText, setMarkdownText, inputMax, outputMax, resize } = props;
+
   return(
     <div className={classNames('window', 'input', {maximised: inputMax}, {hidden: outputMax})}>
       <div className='window__label-area'>
