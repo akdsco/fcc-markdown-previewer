@@ -15,6 +15,12 @@ function App() {
     setMarkdownText(markdownExample);
   },[]);
 
+  /**
+   * @function changes state of InputMax and OutputMax depending on current state,
+   * this manipulation allows windows inside App component to be resized to fullscreen and back
+   * @param {object} e - synthetic JavaScript event object
+   */
+
   function resize(e) {
     const type = e.currentTarget.value;
 
@@ -34,6 +40,7 @@ function App() {
   return (
     <div className="App container" data-test="component-app">
       <Input
+        data-test="component-input"
         markdownText={markdownText}
         setMarkdownText={setMarkdownText}
         inputMax={inputMax}
@@ -41,6 +48,7 @@ function App() {
         resize={resize}
       />
       <Output
+        data-test="component-output"
         markdownText={markdownText}
         inputMax={inputMax}
         outputMax={outputMax}
